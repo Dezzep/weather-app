@@ -9,24 +9,28 @@
 </head>
 <body>
   <header>
-    <h1>Weather App</h1>
+    <h1 class="dark-bg-text">Weather App</h1>
   </header>
 
   <main>
-    <h2>WEATHER</h2>
-
     <div class="weather">
-      <h3 id="location"></h3>
+      <h2 id="location"></h2>
       <p id="conditions"></p>
       <p id="temperature"></p>
       <img id="weather-icon" src="" alt="">
-      <button id="changeTemp">Change To Farenheit</button>
+      <button id="changeTemp"></button>
+
     </div>
     <form id ="enter-city" action="">
       <label for="city">Enter A City</label>
       <input type="text" name="city" id="city">
+      <button id="get-weather" >Get Weather</button>
+
     </form>
+    <div class="container-5day">
+    <h2 class="dark-bg-text">Five Day Forecast</h2>
     <div class="five-day-forecast">
+      
       <div id="day0">
       </div>
       <div id="day1">
@@ -38,6 +42,7 @@
       <div id="day4">
       </div>
     </div>
+  </div>
   </main>
     
   
