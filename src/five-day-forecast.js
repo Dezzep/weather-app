@@ -1,3 +1,5 @@
+import datesForForecast from './dates';
+
 class FiveDayForecastJsonProcessor {
   constructor(jsonForecast) {
     this.listOf3Hours = jsonForecast.list; // the api sends a list of updated weather every 3 hours
@@ -16,17 +18,17 @@ class FiveDayForecastJsonProcessor {
 
 const appendADaysWeatherToTheDom = (weatherList) => {
   console.log(weatherList.days);
+  const arrayOfNext5Days = datesForForecast();
   for (let i = 0; i < weatherList.days.length; i += 1) {
     const day = document.getElementById(`day${i}`);
     day.innerHTML = '';
     const icon = `http://openweathermap.org/img/w/${weatherList.days[i].weather[0].icon}.png`;
-    // creates img and paragraph.
+    // creates img and paragraph -- append it to dom.
     const img = document.createElement('img');
     img.src = `${icon}`;
     const para = document.createElement('p');
-    para.innerText = 'the day';
+    para.innerText = `${arrayOfNext5Days[i]}`;
     day.append(img, para);
-    console.log(icon);
   }
 };
 

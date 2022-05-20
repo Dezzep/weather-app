@@ -16,4 +16,29 @@ const convertKelvToFarAndRound = (temp) => {
   return ans;
 };
 
-export { convertKelvToCelcAndRound, convertKelvToFarAndRound };
+const celsiusToDom = (cels, id) => {
+  id.innerHTML = cels;
+  const button = document.getElementById('changeTemp');
+  button.innerText = 'Change To Fahrenheit';
+};
+
+const fahrenheitToDom = (far, id) => {
+  id.innerHTML = far;
+  const button = document.getElementById('changeTemp');
+  button.innerText = 'Change To Celsius';
+};
+let celsiusVal = true;
+const changeToFarOrCels = (cels, far, id) => {
+  console.log(celsiusVal);
+
+  if (celsiusVal) {
+    fahrenheitToDom(far, id);
+    celsiusVal = false;
+  } else if (!celsiusVal) {
+    celsiusToDom(cels, id);
+    celsiusVal = true;
+  }
+};
+export {
+  convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels,
+};
