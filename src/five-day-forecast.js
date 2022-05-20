@@ -14,17 +14,25 @@ class FiveDayForecastJsonProcessor {
   };
 }
 
-const appendADaysWeatherToTheDom = (weatherN) => {
-  const container = document.getElementsByClassName('five-day-forecast');
-  for (let i = 0; i < weatherN.days.length; i += 1) {
+const appendADaysWeatherToTheDom = (weatherList) => {
+  console.log(weatherList.days);
+  for (let i = 0; i < weatherList.days.length; i += 1) {
     const day = document.getElementById(`day${i}`);
-    day.innerText = `today is day${i}`;
+    day.innerHTML = '';
+    const icon = `http://openweathermap.org/img/w/${weatherList.days[i].weather[0].icon}.png`;
+    // creates img and paragraph.
+    const img = document.createElement('img');
+    img.src = `${icon}`;
+    const para = document.createElement('p');
+    para.innerText = 'the day';
+    day.append(img, para);
+    console.log(icon);
   }
 };
 
-const weatherForecast5Days = async (lat, lon) => {
+const weatherForecast5Days = async (lat, lon, apiKey) => {
   if (lat !== undefined && lon !== undefined) {
-    const fetchForecast = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=5a0666d038ba8f944ba08c0c14ce62df`, { mode: 'cors' });
+    const fetchForecast = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`, { mode: 'cors' });
     const obtainedForecast = await fetchForecast.json();
     const fiveDayForecast = new FiveDayForecastJsonProcessor(obtainedForecast);
     fiveDayForecast.get5Dates(fiveDayForecast.listOf3Hours);

@@ -1,8 +1,8 @@
 import { convertKelvToCelcAndRound, convertKelvToFarAndRound } from './temp-convert';
 
-let celsius = true;
+let celsius = true; // default displayed temperature value is celsius.
 
-export default class JsonDataFromOpenWeatherMapThatIsUsed {
+export default class todaysForecast {
   constructor(weatherObtained) {
     this.locationId = weatherObtained.id;
     this.tempInKelvin = weatherObtained.main.temp;
