@@ -6,4 +6,11 @@ header{
 }
 main{
   background-color: #fff;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.five-day-forecast{
+  display:flex;
+  background-color: red;
 }

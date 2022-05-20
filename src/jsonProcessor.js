@@ -22,7 +22,7 @@ export default class JsonDataFromOpenWeatherMapThatIsUsed {
       if (celsius) {
         this.temperature.innerHTML = this.tempCelsius;
       } else {
-        this.temperature.innerHTML = this.tempFahrenheit
+        this.temperature.innerHTML = this.tempFahrenheit;
       }
     };
     const changeTemp = () => {
