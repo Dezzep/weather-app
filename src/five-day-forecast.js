@@ -1,21 +1,31 @@
 import datesForForecast from './dates';
+import { splitArrayIn8 } from './temp-convert';
 
 class FiveDayForecastJsonProcessor {
   constructor(jsonForecast) {
     this.listOf3Hours = jsonForecast.list; // the api sends a list of updated weather every 3 hours
     this.days = [];
+    this.every3HoursStartingFromTomorrow = [];
+    this.averageHighEachDay = [];
+    this.averageLowEachDay = [];
+    this.arrayItemCounter = 0;
   }
 
   get5Dates = (hourList) => {
+    let nextDayConfirmed = false;
     for (let i = 0; i < hourList.length; i += 1) {
       if (hourList[i].dt_txt.includes('00:00:00')) { // each 00:00:00 is a new date.
-        // A potential bug would be if the user checks for the weather at exactly 00:00:00.
+      // A potential bug would be if the user checks for the weather at exactly 00:00:00.
         this.days.push(hourList[i]);
+        nextDayConfirmed = true;
+      }
+      if (nextDayConfirmed) {
+        this.every3HoursStartingFromTomorrow.push(hourList[i]);
       }
     }
+    splitArrayIn8(this.every3HoursStartingFromTomorrow);
   };
 }
-
 const appendADaysWeatherToTheDom = (weatherList) => {
   console.log(weatherList.days);
   const arrayOfNext5Days = datesForForecast();

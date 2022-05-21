@@ -39,6 +39,27 @@ const changeToFarOrCels = (cels, far, id) => {
     celsiusVal = true;
   }
 };
+
+const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
+
+const splitArrayIn8 = (arr) => {
+  let groupOf8Numbers = [];
+  const arrayOfGroupedNumbers = [];
+  let countTo8 = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    groupOf8Numbers[countTo8] = (arr[i]);
+    countTo8 += 1;
+    if (countTo8 > 7) {
+      arrayOfGroupedNumbers.push(groupOf8Numbers);
+      groupOf8Numbers = [];
+      countTo8 = 0;
+    }
+  }
+  if (countTo8 < 7) {
+    arrayOfGroupedNumbers.push(groupOf8Numbers);
+  }
+  console.log(arrayOfGroupedNumbers);
+};
 export {
-  convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels,
+  convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels, average, splitArrayIn8,
 };
