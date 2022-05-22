@@ -29,8 +29,6 @@ const fahrenheitToDom = (far, id) => {
 };
 let celsiusVal = true;
 const changeToFarOrCels = (cels, far, id) => {
-  console.log(celsiusVal);
-
   if (celsiusVal) {
     fahrenheitToDom(far, id);
     celsiusVal = false;
@@ -39,15 +37,29 @@ const changeToFarOrCels = (cels, far, id) => {
     celsiusVal = true;
   }
 };
+const changeTemp = (cels, far) => {
+  const temp = document.getElementById('temperature');
+  changeToFarOrCels(cels, far, temp);
+};
+
 
 const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
-const splitArrayIn8 = (arr) => {
+const averageNumbersIn2dArray = (arr) => {
+  const dayTempAverages = [];
+
+  for (let i = 0; i < arr.length; i += 1) {
+    dayTempAverages.push(average(arr[i]));
+  }
+  return dayTempAverages;
+};
+
+const splitArrayIn8AndReturnTempAverages = (arr) => {
   let groupOf8Numbers = [];
   const arrayOfGroupedNumbers = [];
   let countTo8 = 0;
   for (let i = 0; i < arr.length; i += 1) {
-    groupOf8Numbers[countTo8] = (arr[i]);
+    groupOf8Numbers.push(arr[i].main.temp);
     countTo8 += 1;
     if (countTo8 > 7) {
       arrayOfGroupedNumbers.push(groupOf8Numbers);
@@ -58,8 +70,10 @@ const splitArrayIn8 = (arr) => {
   if (countTo8 < 7) {
     arrayOfGroupedNumbers.push(groupOf8Numbers);
   }
-  console.log(arrayOfGroupedNumbers);
+  return averageNumbersIn2dArray(arrayOfGroupedNumbers);
 };
+
 export {
-  convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels, average, splitArrayIn8,
+  convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels,
+  average, splitArrayIn8AndReturnTempAverages, changeTemp,
 };

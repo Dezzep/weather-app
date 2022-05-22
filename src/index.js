@@ -2,16 +2,12 @@ import './styles.scss';
 import formListener from './forms';
 import weatherForecast5Days from './five-day-forecast';
 import TodaysForecast from './todaysForecast';
-import { convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels } from './temp-convert';
+import { convertKelvToCelcAndRound, convertKelvToFarAndRound, changeTemp} from './temp-convert';
 
 let celsDegree;
 let farDegree;
 const key = '5a0666d038ba8f944ba08c0c14ce62df';
 
-const changeTemp = (cels, far) => {
-  const temp = document.getElementById('temperature');
-  changeToFarOrCels(cels, far, temp);
-};
 const getWeather = async (enteredLocation) => {
   try {
     const fetchWeather = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${enteredLocation}&APPID=${key}`, { mode: 'cors' });

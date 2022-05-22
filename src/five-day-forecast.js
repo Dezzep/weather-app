@@ -1,14 +1,15 @@
 import datesForForecast from './dates';
-import { splitArrayIn8 } from './temp-convert';
+import { splitArrayIn8AndReturnTempAverages, convertKelvToCelcAndRound, convertKelvToFarAndRound } from './temp-convert';
 
 class FiveDayForecastJsonProcessor {
   constructor(jsonForecast) {
     this.listOf3Hours = jsonForecast.list; // the api sends a list of updated weather every 3 hours
     this.days = [];
     this.every3HoursStartingFromTomorrow = [];
-    this.averageHighEachDay = [];
-    this.averageLowEachDay = [];
+    this.averageTemps = [];
     this.arrayItemCounter = 0;
+    this.celsTemps = [];
+    this.farTemps = [];
   }
 
   get5Dates = (hourList) => {
@@ -23,11 +24,19 @@ class FiveDayForecastJsonProcessor {
         this.every3HoursStartingFromTomorrow.push(hourList[i]);
       }
     }
-    splitArrayIn8(this.every3HoursStartingFromTomorrow);
+    this.averageTemps = splitArrayIn8AndReturnTempAverages(this.every3HoursStartingFromTomorrow);
+  };
+
+  celsAndFarTempLoop = (avgtemps) => {
+    for (let i = 0; i < avgtemps.length; i += 1) {
+      this.celsTemps.push(convertKelvToCelcAndRound(avgtemps[i]));
+      this.farTemps.push(convertKelvToFarAndRound(avgtemps[i]));
+    }
   };
 }
 const appendADaysWeatherToTheDom = (weatherList) => {
   console.log(weatherList.days);
+  weatherList.celsAndFarTempLoop(weatherList.averageTemps);
   const arrayOfNext5Days = datesForForecast();
   for (let i = 0; i < weatherList.days.length; i += 1) {
     const day = document.getElementById(`day${i}`);
@@ -40,6 +49,7 @@ const appendADaysWeatherToTheDom = (weatherList) => {
     para.innerText = `${arrayOfNext5Days[i]}`;
     day.append(img, para);
   }
+  console.log(weatherList.celsTemps);
 };
 
 const weatherForecast5Days = async (lat, lon, apiKey) => {
