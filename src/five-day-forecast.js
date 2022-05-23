@@ -44,7 +44,7 @@ const appendADaysWeatherToTheDom = (weatherList) => {
   for (let i = 0; i < weatherList.days.length; i += 1) {
     const day = document.getElementById(`day${i}`);
     day.innerHTML = '';
-    const icon = `http://openweathermap.org/img/w/${weatherList.days[i].weather[0].icon}.png`;
+    const icon = `https://openweathermap.org/img/w/${weatherList.days[i].weather[0].icon}.png`;
     // creates img and paragraph -- append it to dom.
     const img = document.createElement('img'); // show images of weather i.e clouds or sunshine
     img.src = `${icon}`;
@@ -72,7 +72,7 @@ const appendADaysWeatherToTheDom = (weatherList) => {
 
 const weatherForecast5Days = async (lat, lon, apiKey) => {
   if (lat !== undefined && lon !== undefined) {
-    const fetchForecast = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`, { mode: 'cors' });
+    const fetchForecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`, { mode: 'cors' });
     const obtainedForecast = await fetchForecast.json();
     const fiveDayForecast = new FiveDayForecastJsonProcessor(obtainedForecast);
     fiveDayForecast.get5Dates(fiveDayForecast.listOf3Hours);

@@ -2,7 +2,10 @@ import './styles.scss';
 import formListener from './forms';
 import weatherForecast5Days from './five-day-forecast';
 import TodaysForecast from './todaysForecast';
-import { convertKelvToCelcAndRound, convertKelvToFarAndRound, changeTemp, displayCurrentTemp } from './temp-convert';
+import {
+  convertKelvToCelcAndRound, convertKelvToFarAndRound,
+  changeTemp, displayCurrentTemp,
+} from './temp-convert';
 
 let celsDegree;
 let farDegree;
@@ -10,7 +13,7 @@ const key = '5a0666d038ba8f944ba08c0c14ce62df';
 
 const getWeather = async (enteredLocation) => {
   try {
-    const fetchWeather = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${enteredLocation}&APPID=${key}`, { mode: 'cors' });
+    const fetchWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredLocation}&APPID=${key}`, { mode: 'cors' });
     const obtainedWeather = await fetchWeather.json();
     // goes to a seperate module which takes jsonData needed and updates it to the dom.
     // eslint-disable-next-line no-unused-vars
