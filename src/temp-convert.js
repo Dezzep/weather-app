@@ -40,12 +40,12 @@ const changeToFarOrCels = (cels, far, id) => {
     celsiusVal = true;
   }
 };
-const changeTemp = (cels, far) => {
-  const temp = document.getElementById('temperature');
+const changeTemp = (cels, far, tempDispId) => {
+  const temp = document.getElementById(tempDispId);
   changeToFarOrCels(cels, far, temp);
 };
-const displayCurrentTemp = (cels, far) => {
-  const temp = document.getElementById('temperature');
+const displayCurrentTemp = (cels, far, tempDispId) => {
+  const temp = document.getElementById(tempDispId);
   if (celsiusVal) {
     celsiusToDom(cels, temp);
   } else {

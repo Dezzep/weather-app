@@ -20,14 +20,14 @@ const getWeather = async (enteredLocation) => {
     weatherForecast5Days(cordLat, cordLon, key);
     celsDegree = convertKelvToCelcAndRound(obtainedWeather.main.temp);
     farDegree = convertKelvToFarAndRound(obtainedWeather.main.temp);
-    displayCurrentTemp(celsDegree, farDegree);
+    displayCurrentTemp(celsDegree, farDegree, 'temperature');
   } catch (err) {
     alert(err);
   }
 };
 const button = document.getElementById('changeTemp');
 button.addEventListener('click', () => {
-  changeTemp(celsDegree, farDegree);
+  changeTemp(celsDegree, farDegree, 'temperature');
 });
 
 getWeather('montreal'); // default weather for when user loads the page.

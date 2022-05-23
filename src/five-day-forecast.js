@@ -1,5 +1,8 @@
 import datesForForecast from './dates';
-import { splitArrayIn8AndReturnTempAverages, convertKelvToCelcAndRound, convertKelvToFarAndRound } from './temp-convert';
+import {
+  splitArrayIn8AndReturnTempAverages, convertKelvToCelcAndRound, 
+  convertKelvToFarAndRound, changeTemp, displayCurrentTemp, 
+} from './temp-convert';
 
 class FiveDayForecastJsonProcessor {
   constructor(jsonForecast) {
@@ -43,9 +46,15 @@ const appendADaysWeatherToTheDom = (weatherList) => {
     day.innerHTML = '';
     const icon = `http://openweathermap.org/img/w/${weatherList.days[i].weather[0].icon}.png`;
     // creates img and paragraph -- append it to dom.
-    const img = document.createElement('img');
+    const img = document.createElement('img'); // show images of weather i.e clouds or sunshine
     img.src = `${icon}`;
-    const para = document.createElement('p');
+    const paraCurrentTemp = document.createElement('p');
+    paraCurrentTemp.innerHTML = '';
+    paraCurrentTemp.id = `temperature-5-day${[i]}`;
+    day.append(paraCurrentTemp);
+    const temperatureId = paraCurrentTemp.id;
+    displayCurrentTemp(weatherList.celsTemps[i], weatherList.farTemps[i], temperatureId);
+    const para = document.createElement('p'); // displays the day of the week
     para.innerText = `${arrayOfNext5Days[i]}`;
     day.append(img, para);
   }
