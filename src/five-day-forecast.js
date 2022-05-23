@@ -1,7 +1,7 @@
 import datesForForecast from './dates';
 import {
-  splitArrayIn8AndReturnTempAverages, convertKelvToCelcAndRound, 
-  convertKelvToFarAndRound, changeTemp, displayCurrentTemp, 
+  splitArrayIn8AndReturnTempAverages, convertKelvToCelcAndRound,
+  convertKelvToFarAndRound, changeTemp, displayCurrentTemp,
 } from './temp-convert';
 
 class FiveDayForecastJsonProcessor {
@@ -13,6 +13,7 @@ class FiveDayForecastJsonProcessor {
     this.arrayItemCounter = 0;
     this.celsTemps = [];
     this.farTemps = [];
+    this.listenerIds = [];
   }
 
   get5Dates = (hourList) => {
@@ -51,14 +52,24 @@ const appendADaysWeatherToTheDom = (weatherList) => {
     const paraCurrentTemp = document.createElement('p');
     paraCurrentTemp.innerHTML = '';
     paraCurrentTemp.id = `temperature-5-day${[i]}`;
+    paraCurrentTemp.className = '5-day-temps';
     day.append(paraCurrentTemp);
     const temperatureId = paraCurrentTemp.id;
     displayCurrentTemp(weatherList.celsTemps[i], weatherList.farTemps[i], temperatureId);
+    weatherList.listenerIds.push(temperatureId);
+
     const para = document.createElement('p'); // displays the day of the week
     para.innerText = `${arrayOfNext5Days[i]}`;
     day.append(img, para);
   }
-  console.log(weatherList.celsTemps);
+  console.log(weatherList.listenerIds);
+  const button = document.getElementById('changeTemp');
+  button.addEventListener('click', () => {
+    for (let i = 0; i < weatherList.listenerIds.length; i += 1) {
+      const elementId = weatherList.listenerIds[i];
+      displayCurrentTemp(weatherList.celsTemps[i], weatherList.farTemps[i], elementId);
+    }
+  });
 };
 
 const weatherForecast5Days = async (lat, lon, apiKey) => {
