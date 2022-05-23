@@ -4,7 +4,7 @@ export default class TodaysForecast {
   constructor(weatherObtained) {
     this.locationId = weatherObtained.id;
     // this.tempInKelvin = weatherObtained.main.temp;
-    this.iconForWeather = `http://openweathermap.org/img/w/${weatherObtained.weather[0].icon}.png`;
+    this.iconForWeather = `https://openweathermap.org/img/w/${weatherObtained.weather[0].icon}.png`;
     this.location = weatherObtained.name;
     this.description = weatherObtained.weather[0].description;
     // this.tempCelsius = convertKelvToCelcAndRound(this.tempInKelvin);
