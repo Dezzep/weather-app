@@ -1,3 +1,5 @@
+let celsiusVal = true;
+
 const convertKelvToCelcAndRound = (temp) => {
   const kelv = parseInt(temp, 10);
   const cels = kelv - 273.15;
@@ -17,17 +19,18 @@ const convertKelvToFarAndRound = (temp) => {
 };
 
 const celsiusToDom = (cels, id) => {
-  id.innerHTML = cels;
+  const temperatureValue = id;
+  temperatureValue.innerHTML = cels;
   const button = document.getElementById('changeTemp');
   button.innerText = 'Change To Fahrenheit';
 };
 
 const fahrenheitToDom = (far, id) => {
-  id.innerHTML = far;
+  const temperatureValue = id;
+  temperatureValue.innerHTML = far;
   const button = document.getElementById('changeTemp');
   button.innerText = 'Change To Celsius';
 };
-let celsiusVal = true;
 const changeToFarOrCels = (cels, far, id) => {
   if (celsiusVal) {
     fahrenheitToDom(far, id);
@@ -41,7 +44,14 @@ const changeTemp = (cels, far) => {
   const temp = document.getElementById('temperature');
   changeToFarOrCels(cels, far, temp);
 };
-
+const displayCurrentTemp = (cels, far) => {
+  const temp = document.getElementById('temperature');
+  if (celsiusVal) {
+    celsiusToDom(cels, temp);
+  } else {
+    fahrenheitToDom(far, temp);
+  }
+};
 
 const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
@@ -54,7 +64,7 @@ const averageNumbersIn2dArray = (arr) => {
   return dayTempAverages;
 };
 
-const splitArrayIn8AndReturnTempAverages = (arr) => {
+const splitArrayIn8 = (arr) => {
   let groupOf8Numbers = [];
   const arrayOfGroupedNumbers = [];
   let countTo8 = 0;
@@ -70,10 +80,14 @@ const splitArrayIn8AndReturnTempAverages = (arr) => {
   if (countTo8 < 7) {
     arrayOfGroupedNumbers.push(groupOf8Numbers);
   }
-  return averageNumbersIn2dArray(arrayOfGroupedNumbers);
+  return arrayOfGroupedNumbers;
+};
+const splitArrayIn8AndReturnTempAverages = (arr) => {
+  const valuesOf8 = splitArrayIn8(arr);
+  return averageNumbersIn2dArray(valuesOf8);
 };
 
 export {
   convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels,
-  average, splitArrayIn8AndReturnTempAverages, changeTemp,
+  average, splitArrayIn8AndReturnTempAverages, changeTemp, displayCurrentTemp,
 };

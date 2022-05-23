@@ -2,7 +2,7 @@ import './styles.scss';
 import formListener from './forms';
 import weatherForecast5Days from './five-day-forecast';
 import TodaysForecast from './todaysForecast';
-import { convertKelvToCelcAndRound, convertKelvToFarAndRound, changeTemp} from './temp-convert';
+import { convertKelvToCelcAndRound, convertKelvToFarAndRound, changeTemp, displayCurrentTemp } from './temp-convert';
 
 let celsDegree;
 let farDegree;
@@ -20,9 +20,7 @@ const getWeather = async (enteredLocation) => {
     weatherForecast5Days(cordLat, cordLon, key);
     celsDegree = convertKelvToCelcAndRound(obtainedWeather.main.temp);
     farDegree = convertKelvToFarAndRound(obtainedWeather.main.temp);
-    changeTemp(celsDegree, farDegree); // calling this function twice because
-    changeTemp(celsDegree, farDegree); // it switches to far from cels when called
-    // to fix this I should make the logic not be in the function.
+    displayCurrentTemp(celsDegree, farDegree);
   } catch (err) {
     alert(err);
   }

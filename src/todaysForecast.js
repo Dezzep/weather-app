@@ -1,6 +1,3 @@
-import { convertKelvToCelcAndRound, convertKelvToFarAndRound} from './temp-convert';
-
-const temp = document.getElementById('temperature');
 // default displayed temperature value is celsius.
 
 export default class TodaysForecast {
