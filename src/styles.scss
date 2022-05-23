@@ -146,12 +146,13 @@ main{
   margin-right: 20px;
   margin-left: 20px;
   border-radius:15px;
+  padding:1.5em;
   background-color: rgba($pop, 0.7);
   @media (max-width: $small-screen) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    padding:1em;
     border-radius:30px;
+    padding: 1em;
   }
 
 }
