@@ -1,52 +1,140 @@
+// -- Meyer reset
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+// -- Meyer Reset End
+
 $pop: #8685EF;
 $dark-bg-text:#00AC7C;
+$small-screen: 700px;
+h1{
+  font-size: 2.5em;
+  margin-left: .7em;
+  margin-top: .5em;
+  background-color: rgba($pop,0.2);
+  padding-left: 0.5em;
+  padding:.2em;
+  color: $dark-bg-text;
+
+
+}
+h2{
+  font-size:2em;
+  
+}
 
 body{
   background-color: #3f3f3f;
 }
 main{
   background-color: #3f3f3f;
-  display:grid;
-  grid-template-rows: 1fr 1fr;
-  
+  display:grid;  
   gap:20px;
+  h2{
+    text-align: center;
+    margin-top: 2em;
+  }
 }
 .dark-bg-text{
   color: $dark-bg-text;
 }
 .weather{
   display:grid;
-  grid-template-columns: 1fr .8fr;
+  grid-template-rows:1fr .5fr .5fr;
   grid-template-areas: 
   'location location'
-  'img  temp'
-  'conditions button';
+  'img  img'
+  'temp temp'
+  'conditions conditions'
+  'button button';
   align-content: center;
   justify-content: center;
-  padding:2em;
-  background-color: $pop;
+  background-color: rgba($pop, 0.6);
+  border-radius: 12px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 1.5em;
+  gap:1em;
+
+  @media (max-width: $small-screen) {
+    padding: 1em;
+
+  }
   
 }
 #location{
   grid-area: location;
   text-align: center;
-  background-color: $pop;
 }
 #conditions{
   grid-area: conditions;
+  align-self: center;
+  justify-self: center;
 }
 #temperature{
   grid-area: temp;
+  align-self: center;
+  justify-self: center;
+  font-size:2em;
 }
 #weather-icon{
   grid-area: img;
+  align-self: center;
+  justify-self: center;
 }
 #changeTemp{
   grid-area: button;
+  align-self: center;
+  justify-self: center;
+  
 }
 .container-5day{
   display:grid;
   grid-template-rows: 1fr 1fr;
+  @media (max-width: $small-screen) {
+    grid-template-rows:1fr;
+    gap:3em;
+  }
   h1{
     justify-self: center;
   }
@@ -55,18 +143,39 @@ main{
 .five-day-forecast{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius:15px;
+  background-color: rgba($pop, 0.7);
+  @media (max-width: $small-screen) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    padding:1em;
+    border-radius:30px;
+  }
 
 }
 .five-day-forecast > div{
   display:grid;
-  background-color: $pop;
   grid-template-rows:1fr 1fr ;
   justify-content: center;
   align-items: center;
+  @media (max-width: $small-screen) {
+    justify-content: start;
+    margin-left: 2em;
+    padding:1em;
+    border-bottom: 5px solid black;
+  }
+
+  
 }
 #enter-city{
   display:flex;
   flex-direction:column;
   align-items: center;
   gap:10px;
+  background-color: rgba($pop, 0.6);
+  margin-left: auto;
+  margin-right: auto;
+  padding:1em 3em;
 }

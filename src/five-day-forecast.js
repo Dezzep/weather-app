@@ -39,7 +39,6 @@ class FiveDayForecastJsonProcessor {
   };
 }
 const appendADaysWeatherToTheDom = (weatherList) => {
-  console.log(weatherList.days);
   weatherList.celsAndFarTempLoop(weatherList.averageTemps);
   const arrayOfNext5Days = datesForForecast();
   for (let i = 0; i < weatherList.days.length; i += 1) {
@@ -62,7 +61,6 @@ const appendADaysWeatherToTheDom = (weatherList) => {
     para.innerText = `${arrayOfNext5Days[i]}`;
     day.append(img, para);
   }
-  console.log(weatherList.listenerIds);
   const button = document.getElementById('changeTemp');
   button.addEventListener('click', () => {
     for (let i = 0; i < weatherList.listenerIds.length; i += 1) {
