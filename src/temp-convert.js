@@ -92,7 +92,7 @@ const splitArrayIn8 = (arr) => {
       countTo8 = 0;
     }
   }
-  if (countTo8 < 7) {
+  if (countTo8 <= 7) {
     arrayOfGroupedNumbers.push(groupOf8Numbers);
   }
   return arrayOfGroupedNumbers;
