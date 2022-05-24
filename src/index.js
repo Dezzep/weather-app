@@ -3,7 +3,7 @@ import formListener from './forms';
 import weatherForecast5Days from './five-day-forecast';
 import TodaysForecast from './todaysForecast';
 import {
-  convertKelvToCelcAndRound, convertKelvToFarAndRound,
+  convertKelvToCelcAndRoundNoCOnEnd, converKelvToFarAndRoundNoFOnEnd,
   changeTemp, displayCurrentTemp,
 } from './temp-convert';
 
@@ -21,8 +21,8 @@ const getWeather = async (enteredLocation) => {
     const cordLat = obtainedWeather.coord.lat;
     const cordLon = obtainedWeather.coord.lon;
     weatherForecast5Days(cordLat, cordLon, key);
-    celsDegree = convertKelvToCelcAndRound(obtainedWeather.main.temp);
-    farDegree = convertKelvToFarAndRound(obtainedWeather.main.temp);
+    celsDegree = convertKelvToCelcAndRoundNoCOnEnd(obtainedWeather.main.temp);
+    farDegree = converKelvToFarAndRoundNoFOnEnd(obtainedWeather.main.temp);
     displayCurrentTemp(celsDegree, farDegree, 'temperature');
   } catch (err) {
     alert(err);

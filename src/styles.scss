@@ -84,12 +84,12 @@ main{
   grid-template-areas: 
   'location location'
   'img  img'
-  'temp temp'
+  'tempandbutton tempandbutton'
   'conditions conditions'
-  'button button';
+  'details details1';
   align-content: center;
   justify-content: center;
-  background-color: rgba($pop, 0.6);
+  background-color: rgba($dark-bg-text, 0.6);
   border-radius: 12px;
   margin-left: 20px;
   margin-right: 20px;
@@ -105,14 +105,20 @@ main{
 #location{
   grid-area: location;
   text-align: center;
+  background-color: rgba($pop, 0.3);
+  padding:0.2em 0.5em;
+  border-radius: 12em;
 }
 #conditions{
   grid-area: conditions;
   align-self: center;
   justify-self: center;
+  background-color: rgba($pop, 0.5);
+  padding:0.5em 1em;
+  border: 2px solid black;
+  border-radius: 5em;
 }
 #temperature{
-  grid-area: temp;
   align-self: center;
   justify-self: center;
   font-size:2em;
@@ -123,10 +129,37 @@ main{
   justify-self: center;
 }
 #changeTemp{
-  grid-area: button;
   align-self: center;
-  justify-self: center;
+  border-radius: 10px;
+  border:none;
+  padding:10px 12px;
+  background-color: rgba(red, 0.6);
   
+
+  &:hover{
+    cursor: pointer;
+    background-color: rgba(red, 0.8);
+    transform:scale(1.1);
+
+  }
+  
+}
+.temp-feel{
+  grid-area: details;
+}
+.humidity{
+  grid-area: details1;
+}
+.temp-feel, .humidity{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+  padding:0.5em;
+  background-color: rgba($pop, 0.5);
+  border-radius: 5px;
+  border: 2px solid black;
 }
 .container-5day{
   display:grid;
@@ -179,4 +212,11 @@ main{
   margin-left: auto;
   margin-right: auto;
   padding:1em 3em;
+}
+
+.temp-and-button{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: tempandbutton;
 }

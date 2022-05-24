@@ -1,7 +1,7 @@
 import datesForForecast from './dates';
 import {
   splitArrayIn8AndReturnTempAverages, convertKelvToCelcAndRound,
-  convertKelvToFarAndRound, changeTemp, displayCurrentTemp,
+  convertKelvToFarAndRound, displayCurrentTemp,
 } from './temp-convert';
 
 class FiveDayForecastJsonProcessor {

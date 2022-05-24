@@ -8,7 +8,14 @@ const convertKelvToCelcAndRound = (temp) => {
   ans += '&#x2103';
   return ans;
 };
-
+const convertKelvToCelcAndRoundNoCOnEnd = (temp) => {
+  const kelv = parseInt(temp, 10);
+  const cels = kelv - 273.15;
+  const x = Math.round(cels);
+  let ans = x.toString();
+  ans += '&#xb0';
+  return ans;
+};
 const convertKelvToFarAndRound = (temp) => {
   const kelv = parseInt(temp, 10);
   const far = (kelv - 273.15) * (9 / 5) + 32;
@@ -17,19 +24,27 @@ const convertKelvToFarAndRound = (temp) => {
   ans += '&#8457';
   return ans;
 };
+const converKelvToFarAndRoundNoFOnEnd = (temp) => {
+  const kelv = parseInt(temp, 10);
+  const far = (kelv - 273.15) * (9 / 5) + 32;
+  const x = Math.round(far);
+  let ans = x.toString();
+  ans += '&#xb0';
+  return ans;
+};
 
 const celsiusToDom = (cels, id) => {
   const temperatureValue = id;
   temperatureValue.innerHTML = cels;
   const button = document.getElementById('changeTemp');
-  button.innerText = 'Change To Fahrenheit';
+  button.innerText = 'C';
 };
 
 const fahrenheitToDom = (far, id) => {
   const temperatureValue = id;
   temperatureValue.innerHTML = far;
   const button = document.getElementById('changeTemp');
-  button.innerText = 'Change To Celsius';
+  button.innerText = 'F';
 };
 const changeToFarOrCels = (cels, far, id) => {
   if (celsiusVal) {
@@ -90,4 +105,5 @@ const splitArrayIn8AndReturnTempAverages = (arr) => {
 export {
   convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels,
   average, splitArrayIn8AndReturnTempAverages, changeTemp, displayCurrentTemp,
+  converKelvToFarAndRoundNoFOnEnd, convertKelvToCelcAndRoundNoCOnEnd,
 };
