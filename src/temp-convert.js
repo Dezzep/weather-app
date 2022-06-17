@@ -101,9 +101,32 @@ const splitArrayIn8AndReturnTempAverages = (arr) => {
   const valuesOf8 = splitArrayIn8(arr);
   return averageNumbersIn2dArray(valuesOf8);
 };
+const timeConversionFromMsToHourMinute = (ms) => {
+  const msDate = new Date(1000 * ms);
+  let meridiemIndicator = 'AM';
+  let hours = msDate.getHours();
+  const seconds = msDate.getSeconds();
+  if (hours > 12) {
+    hours -= 12;
+    meridiemIndicator = 'PM';
+  }
+  let minutes = msDate.getMinutes();
+  if (seconds > 30) {
+    minutes += 1;
+    if (minutes === '61') {
+      minutes = '01';
+    }
+  }
+  if (minutes < 10) {
+    minutes = `0${minutes}`; // ensures time is reported as ex: 5:05 AM instead of 5:5Am.
+  }
+
+  return (`${hours}:${minutes}${meridiemIndicator}`);
+};
 
 export {
   convertKelvToCelcAndRound, convertKelvToFarAndRound, changeToFarOrCels,
   average, splitArrayIn8AndReturnTempAverages, changeTemp, displayCurrentTemp,
   converKelvToFarAndRoundNoFOnEnd, convertKelvToCelcAndRoundNoCOnEnd,
+  timeConversionFromMsToHourMinute,
 };

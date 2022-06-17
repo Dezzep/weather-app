@@ -25,7 +25,7 @@ const getWeather = async (enteredLocation) => {
     farDegree = converKelvToFarAndRoundNoFOnEnd(obtainedWeather.main.temp);
     displayCurrentTemp(celsDegree, farDegree, 'temperature');
   } catch (err) {
-    alert(err);
+    alert('The Location You Entered Is Invalid');
   }
 };
 const button = document.getElementById('changeTemp');

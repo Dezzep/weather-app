@@ -49,11 +49,11 @@ $dark-bg-text:#00AC7C;
 $small-screen: 700px;
 h1{
   font-size: 2.5em;
-  margin-left: .7em;
+  text-align:center;
   margin-top: .5em;
   background-color: rgba($pop,0.2);
   padding-left: 0.5em;
-  padding:.2em;
+  padding:.4em;
   color: $dark-bg-text;
 
 
@@ -81,11 +81,11 @@ main{
 .weather{
   display:grid;
   grid-template-areas: 
-  'location location'
-  
-  'tempandbutton img'
-  'conditions conditions'
-  'details details1';
+  'location location location location'
+  'tempandbutton tempandbutton tempandbutton tempandbutton'
+  'conditions conditions conditions conditions'
+  'img img img img'
+  'details details1 details2 details3';
   align-content: center;
   justify-content: center;
   background-color: rgba($dark-bg-text, 0.6);
@@ -97,25 +97,33 @@ main{
 
   @media (max-width: $small-screen) {
     padding: 1em;
-
+    grid-template-areas: 
+  'location location'
+  'tempandbutton tempandbutton'
+  'conditions conditions'
+  'img img'
+  'details details1'
+  'details2 details3';
   }
   
 }
 #location{
   grid-area: location;
   text-align: center;
-  background-color: rgba($pop, 0.3);
-  padding:0.2em 0.5em;
+  background-color: rgba($pop, 0.4);
+  padding:.3em 2em;
   border-radius: 12em;
+  margin-bottom: .5em;
 }
 #conditions{
+  margin-top: 1em;
   grid-area: conditions;
   align-self: center;
   justify-self: center;
   background-color: rgba($pop, 0.5);
   padding:0.5em 1em;
   border: 2px solid black;
-  border-radius: 5em;
+  
 }
 #temperature{
   align-self: center;
@@ -149,13 +157,19 @@ main{
 .humidity{
   grid-area: details1;
 }
-.temp-feel, .humidity{
+.sunrise{
+  grid-area: details2;
+}
+.sunset{
+  grid-area: details3;
+}
+.temp-feel, .humidity, .sunrise, .sunset{
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap:10px;
-  padding:0.5em;
+  padding:0.5em 2em;
   background-color: rgba($pop, 0.5);
   border-radius: 5px;
   border: 2px solid black;
@@ -192,12 +206,13 @@ main{
   display:grid;
   grid-template-rows:1fr 1fr ;
   justify-content: center;
-  align-items: center;
+  align-items : center;
   @media (max-width: $small-screen) {
     justify-content: start;
-    margin-left: 2em;
-    padding:1em;
+    margin-left: 3em;
+    padding:2em;
     border-bottom: 5px solid black;
+    
   }
 
   
