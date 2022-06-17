@@ -80,11 +80,10 @@ main{
 }
 .weather{
   display:grid;
-  grid-template-rows:1fr .5fr .5fr;
   grid-template-areas: 
   'location location'
-  'img  img'
-  'tempandbutton tempandbutton'
+  
+  'tempandbutton img'
   'conditions conditions'
   'details details1';
   align-content: center;
@@ -204,14 +203,31 @@ main{
   
 }
 #enter-city{
+  border-radius:12px;
+  margin-top: 5em;
   display:flex;
   flex-direction:column;
   align-items: center;
   gap:10px;
-  background-color: rgba($pop, 0.6);
-  margin-left: auto;
-  margin-right: auto;
-  padding:1em 3em;
+  background-color: rgba($pop, 0.3);
+  margin-left: 3em;
+  margin-right: 3em;
+  padding:3em 6em;
+  label{
+    font-size: 1.5em;
+    margin-bottom: .5em;
+  }
+  input{
+    background-color: #fff;
+    padding: 0.3em 1em;
+    border-radius: 11px;
+  }
+  
+}
+#get-weather {
+  margin-top: 1em;
+  padding:.5em;
+  background-color: rgba($dark-bg-text, 0.4 );
 }
 
 .temp-and-button{
