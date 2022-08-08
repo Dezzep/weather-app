@@ -1,3 +1,4 @@
+![Screen Shot 2022-08-08 at 7 05 39 PM (2)](https://user-images.githubusercontent.com/44452019/183530206-85ad6b1b-c111-45d4-af67-ab090cea0726.png)
 # How To Launch:
 Option 1:
 - Go to the Environments section on this page. if you're on desktop it's on your right, if you're on mobile, scroll down.
