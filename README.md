@@ -11,7 +11,7 @@ Option 1:
 - npm start
 
 # How To Use:
-Type a place i.e montreal into the text field.
+Type a location into the text field to receive weather data
 
 # Key Features:
  - Data is fetched from OpenWeatherMap
